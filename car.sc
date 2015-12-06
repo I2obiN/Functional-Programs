@@ -8,6 +8,32 @@ trait Car {
   def filltank(x: Int)
 }
 
+// Car Class
+final class Car(fg: FuelGauge, od: Odometer) extends CarT {
+  def fuelGauge(fg: FuelGauge) = fg;
+  def odometer(od: Odometer) = od;
+  private var FuelIntake = 0;
+
+  // Drives the car x amount of miles (driver)
+  def drive(x: Int) = {
+    var m = x
+    // Divide miles by 24 to get number of gallons burned
+    var fuelburned = m / 24
+    while(fuelburned != 0){fg.decfuel();fuelburned-=1}
+    // Increases mileage for each mile driven
+    while(m != 0){od.incmileage();m-=1}
+  }
+
+  // Fills fuel tank with x gallons amount of petrol
+  def filltank(x: Int) = {
+    FuelIntake = x
+    while(FuelIntake != 0){fg.incfuel();FuelIntake-=1}
+  }
+  override def toString = {
+    "Fuel: " + fg.toString + " Odometer: " + od.toString
+  }
+}
+
 // Electric Car Class
 final class ElectronicCar(fg: ElectronicFuelGauge, od: ElectronicOdometer) extends Car {
   def fuelGauge(fg: FuelGauge) = new ElectronicFuelGauge(0)
