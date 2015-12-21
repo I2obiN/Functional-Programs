@@ -1,3 +1,4 @@
+// Thomas Hood
 trait Car {
   // Car traits
   def fuelGauge(x: FuelGauge): FuelGauge
