@@ -1,2 +1,2 @@
-# Scala-Car
-Just a simple Car class for Scala
+# Scala-Stuff
+Various scala programs
