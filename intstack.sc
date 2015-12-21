@@ -10,7 +10,7 @@ class stack(x: List[Int]) {
   val stack: scala.collection.mutable.Stack[List[Int]] = new scala.collection.mutable.Stack[List[Int]]
   var dataSize: Int=1
   // Must be a List of Strings -- Precondition for creation of data structure
-  //require(x==true)
+  require(x.length > 0)
 
   // Takes List of Strings as first data to be pushed to stack
   val first: List[Int] = x
