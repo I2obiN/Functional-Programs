@@ -1,5 +1,8 @@
-// Thomas Hood
-trait Car {
+// Programming Paradigms
+// T.Hood
+
+// Use interface/polymorphism instead of inheritence .. interfaces for scala == traits
+trait CarT {
   // Car traits
   def fuelGauge(x: FuelGauge): FuelGauge
   def odometer(y: Odometer): Odometer
@@ -36,7 +39,7 @@ final class Car(fg: FuelGauge, od: Odometer) extends CarT {
 }
 
 // Electric Car Class
-final class ElectronicCar(fg: ElectronicFuelGauge, od: ElectronicOdometer) extends Car {
+final class ElectronicCar(fg: ElectronicFuelGauge, od: ElectronicOdometer) extends CarT {
   def fuelGauge(fg: FuelGauge) = new ElectronicFuelGauge(0)
   def odometer(od: Odometer) = new ElectronicOdometer(0)
   private var FuelIntake = 0
@@ -62,7 +65,7 @@ final class ElectronicCar(fg: ElectronicFuelGauge, od: ElectronicOdometer) exten
 }
 
 // Mechanical Car Class
-final class MechanicalCar(fg: AnalogFuelGauge, od: MechanicalOdometer) extends Car {
+final class MechanicalCar(fg: AnalogFuelGauge, od: MechanicalOdometer) extends CarT {
   def fuelGauge(fg: FuelGauge) = new AnalogFuelGauge(0)
   def odometer(od: Odometer) = new MechanicalOdometer(0)
   private var FuelIntake = 0
@@ -166,11 +169,11 @@ abstract class FuelGauge(x: Int){
 final class AnalogFuelGauge(x: Int) extends FuelGauge(x){
   private var Gallons: Int = x
   def status() = Gallons match {
-    case x if x == 15 => "Full"
-    case x if x < 15 && x > 11 => "3/4 Full"
-    case x if x < 12 && x > 7 => "1/2 Full"
-    case x if x < 8 && x > 3 => "1/4 Full"
-    case x if x < 3 => "Empty"
+    case x if x == 15 => "Full."
+    case x if x < 15 && x > 11 => "3/4 Full."
+    case x if x < 12 && x > 7 => "1/2 Full."
+    case x if x < 8 && x > 3 => "1/4 Full."
+    case x if x < 3 => "Empty."
   }
 
   // Increase fuel by one gallon
@@ -193,11 +196,11 @@ final class AnalogFuelGauge(x: Int) extends FuelGauge(x){
       }
     }
   override def toString = Gallons match {
-    case x if x == 15 => "Full"
-    case x if x < 15 && x > 11 => "3/4 Full"
-    case x if x < 12 && x > 7 => "1/2 Full"
-    case x if x < 8 && x > 3 => "1/4 Full"
-    case x if x < 3 => "Empty"
+    case x if x == 15 => "Full."
+    case x if x < 15 && x > 11 => "3/4 Full."
+    case x if x < 12 && x > 7 => "1/2 Full."
+    case x if x < 8 && x > 3 => "1/4 Full."
+    case x if x < 3 => "Empty."
     }
   }
 
@@ -227,3 +230,29 @@ final class ElectronicFuelGauge(x: Int) extends FuelGauge(x){
     Gallons.toString + "-Gal."
   }
 }
+
+// Car Testing - Electronic
+val car1 = new ElectronicCar(new ElectronicFuelGauge(0), new ElectronicOdometer(0))
+// Won't fill beyond 15
+car1.filltank(20)
+car1
+car1.drive(72)
+car1
+// Car Testing - Mechanical
+val car2 = new MechanicalCar(new AnalogFuelGauge(0), new MechanicalOdometer(0))
+// Won't fill beyond 15
+car2.filltank(20)
+car2
+car2.drive(48)
+car2
+car2.drive(148)
+car2
+// Car Testing - Both
+val car3 = new Car(new ElectronicFuelGauge(0), new MechanicalOdometer(0))
+// Won't fill beyond 15
+car3.filltank(20)
+car3
+car3.drive(48)
+car3
+car3.drive(148)
+car3
