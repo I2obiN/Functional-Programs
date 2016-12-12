@@ -1,4 +1,5 @@
 ;;; R5RS
+;;; Iterative-recursive pi procedure, probably needs a lot of work
 (define (pi x y count)
   (if (= (modulo count 2) 0)
   (- y (/ 1 x)
