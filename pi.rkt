@@ -11,3 +11,10 @@
       (+ x 2)
       (+ count 1)))
   (pi x y count))
+  
+  ;;; linear-recursive
+  
+  (define (pi-sum a b)
+    (if (> a b)
+      0
+      (+ (/ 1.0 (* a (+ a 2))) (pi-sum (+ a 4) b))))
