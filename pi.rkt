@@ -5,11 +5,12 @@
 
 (define (pi sum a n count)
   ;;; if n == 0, 0
-  (cond ((= n 0) 0) (= n count) sum)
+  (if (= n 0) 0)
   ;;; if count % 2 == 1, + ... else -, if count == n, sum
+  (cond ((< count n)
   (cond ((= (modulo count 2) 1)
   (pi(+ sum (pi-calc (+ 2 a))) (+ a 2) n (+ count 1)))
-  (pi(- sum (pi-calc (+ 2 a))) (+ a 2) n (+ count 1))))
+  (pi(- sum (pi-calc (+ 2 a))) (+ a 2) n (+ count 1))))))
 
 (define (pi-calc a)
   (/ 1.0 a))
