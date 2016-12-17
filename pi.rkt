@@ -13,3 +13,12 @@
 
 (define (pi-calc a)
   (/ 1.0 a))
+
+;;; Bench
+(define start 0)
+(define end 0)
+(set! start (current-milliseconds))
+(pi-get 400000)
+(set! end (current-milliseconds))
+(display (/ (- end start) 1000.00))
+(write "seconds")
