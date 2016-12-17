@@ -1,6 +1,6 @@
 ;;; R5RS
 ;;; Iterative-recursive pi procedure, probably needs a lot of work
-
+(#%require (only racket/base current-milliseconds))
 (define (pi-get n)
   (pi 1 1 n 0))
 
