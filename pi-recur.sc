@@ -11,4 +11,7 @@ def quickPi(sum: Double, a: Int, n: Int, count: Int, sign: Int) {
 
 def piCalc(a: Int) = { 1.0 / a }
 
-System.out.println(piGet(10000))
+val start = System.currentTimeMillis()
+piGet(400000)
+val end = System.currentTimeMillis()
+val timeSecs = (end - start) / 1000.00
